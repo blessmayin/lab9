@@ -1,4 +1,3 @@
-cat << 'EOF' > .github/workflows/basictests.yml
 name: lab9-basic-tests
 
 on:
@@ -28,4 +27,3 @@ jobs:
           OUTPUT=$(bash validate-data.sh "pearset mccarthy" "083112234")
           echo "Script output was: $OUTPUT"
           if [ "$OUTPUT" = "PASS" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
-EOF
