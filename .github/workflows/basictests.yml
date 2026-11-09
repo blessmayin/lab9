@@ -1,27 +1,31 @@
-name: lab9-basic-tests
-
+cat << 'EOF' > .github/workflows/basictests.yml
 name: lab9-basic-tests
 
 on:
-push:
-branches: [main]
+  push:
+    branches: [ main, test ]
 
 jobs:
   lab9-basic-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@4
-    
+        uses: actions/checkout@v4
+
       - name: Make script executable
         run: chmod +x validate-data.sh
 
       - name: Run and verify output
-        run : |
-          OUTPUT=$(bash validate-data.sh "pearse mccarthy 083112234")
+        run: |
+          OUTPUT=$(bash validate-data.sh "pearse mccarthy" "083112234")
           echo "Script output was: $OUTPUT"
-          if ["$OUTPUT"="PASS"] ; then echo Test Passed!; else echo "Test Fai>
+          if [ "$OUTPUT" = "PASS" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
 
-          OUTPUT=$(bash validate-data.sh "pearse mccarthy 0831122344")
+          OUTPUT=$(bash validate-data.sh "pearse mccarthy" "0831122344")
           echo "Script output was: $OUTPUT"
-          if ["$OUTPUT"="FAIL"] ; then echo Test
+          if [ "$OUTPUT" = "FAIL" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
+
+          OUTPUT=$(bash validate-data.sh "pearset mccarthy" "083112234")
+          echo "Script output was: $OUTPUT"
+          if [ "$OUTPUT" = "PASS" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
+EOF
