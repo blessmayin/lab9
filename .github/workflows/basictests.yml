@@ -17,13 +17,13 @@ jobs:
       - name: Run and verify output
         run: |
           OUTPUT=$(bash validate-data.sh "pearse mccarthy" "083112234")
-          echo "Script output was: $OUTPUT"
-          if [ "$OUTPUT" = "PASS" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
+          echo "Test 1 output: $OUTPUT"
+          if [ "$OUTPUT" = "PASS" ]; then echo "Test 1 Passed!"; else echo "Test 1 Failed!"; exit 1; fi
 
           OUTPUT=$(bash validate-data.sh "pearse mccarthy" "0831122344")
-          echo "Script output was: $OUTPUT"
-          if [ "$OUTPUT" = "FAIL" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
+          echo "Test 2 output: $OUTPUT"
+          if [ "$OUTPUT" = "PASS" ]; then echo "Test 2 Passed!"; else echo "Test 2 Failed!"; exit 1; fi
 
           OUTPUT=$(bash validate-data.sh "pearset mccarthy" "083112234")
-          echo "Script output was: $OUTPUT"
-          if [ "$OUTPUT" = "FAIL" ]; then echo "Test Passed!"; else echo "Test Failed!"; exit 1; fi
+          echo "Test 3 output: $OUTPUT"
+          if [ "$OUTPUT" = "FAIL" ]; then echo "Test 3 Passed!"; else echo "Test 3 Failed!"; exit 1; fi
