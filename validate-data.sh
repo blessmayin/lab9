@@ -1,3 +1,4 @@
+cat << 'EOF' > validate-data.sh
 #!/bin/bash
 
 name="$1"
@@ -8,3 +9,5 @@ if [ ${#name} -le 15 ] && [ ${#mobile} -le 10 ]; then
 else
     echo "FAIL"
 fi
+EOF 
+chmod =x validate-data.sh
